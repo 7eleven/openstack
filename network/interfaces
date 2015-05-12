@@ -1,0 +1,47 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# Source interfaces
+# Please check /etc/network/interfaces.d before changing this file
+# as interfaces may have been defined in /etc/network/interfaces.d
+# NOTE: the primary ethernet device is defined in
+# /etc/network/interfaces.d/eth0
+# See LP: #1262951
+#source /etc/network/interfaces.d/*.cfg
+# The management network interface
+  auto eth0
+  iface eth0 inet static
+  address 10.0.0.21
+  netmask 255.255.255.0
+
+# VM traffic interface
+  auto eth1
+  iface eth1 inet static
+  address 10.0.1.21
+  netmask 255.255.255.0
+
+#The public network interface
+auto eth2
+iface eth2 inet static
+address 192.168.100.21
+netmask 255.255.255.0
+gateway 192.168.100.1
+dns-nameservers 114.114.114.114
+
+#auto eth2
+#iface eth2 inet manual
+#up ifconfig $IFACE 0.0.0.0 up
+#up ip link set $IFACE promisc on
+#down ip link set $IFACE promisc off
+#down ifconfig $IFACE down
+
+#auto br-ex
+#iface br-ex inet static
+#address 192.168.100.21
+#netmask 255.255.255.0
+#gateway 192.168.100.1
+#dns-nameservers 8.8.8.8
